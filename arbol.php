@@ -2,6 +2,7 @@
 <?php
 $titulo = 'Árbol binario desde sus recorridos';
 
+
 require __DIR__ . '/includes/header.php';
 
 // Nombres de los recorridos

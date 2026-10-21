@@ -1,6 +1,7 @@
 <?php
-require_once __DIR__ . '/../clases/autoload.php';
+require_once __DIR__ . '/clases/helpers.php';
 
+$titulo = 'Taller PHP';
 $paginas = [
     'index.php'        => 'Inicio',
     'acronimo.php'     => '1. Acrónimo',
