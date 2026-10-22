@@ -1,0 +1,378 @@
+
+/*1. Variables de colores*/
+
+:root {
+    --fondo: #E8D1A7;
+    --texto: #706e66;
+    --tarjeta: #ffffffb0;
+    --borde: #dfe3ec;
+    --primario: #CCD67F;
+    --primario-osc: #8d9168;
+    --peligro: #759d80;
+    --linea: #8a94a8;
+}
+
+/*2. Configuración general */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Cinzel", serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.5;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+/*3. Barra de navegación */
+
+.barra {
+    background: #8A5F41;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: .75rem 1.5rem;
+}
+
+.barra .marca {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.barra nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+}
+
+.barra nav a {
+    color: #fdfdfd;
+    text-decoration: none;
+    padding: .35rem .7rem;
+    border-radius: 6px;
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.barra nav a:hover,
+.barra nav a.activo {
+    background: #A77F60;
+    color: #ebdfdf;
+}
+
+
+/*4. Contenedor y textos */
+
+.contenedor {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1.25rem;
+}
+
+.subtitulo,
+.nota {
+    color: #5b6479;
+    font-size: .92rem;
+}
+
+
+/*  5. Cuadrícula y tarjetas*/
+
+.rejilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.tarjeta {
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .15s, box-shadow .15s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(30, 40, 80, .12);
+}
+
+.tarjeta h2 {
+    margin: 0 0 .35rem;
+    font-size: 1.05rem;
+    color: var(--primario);
+}
+
+.tarjeta p {
+    margin: 0;
+    color: #97a1a6;
+    font-size: .92rem;
+}
+
+/* 6. Paneles y resultados */
+
+.panel,
+.resultado {
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+
+/* 7. Formularios y campos*/
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: .92rem;
+    margin-bottom: .9rem;
+}
+
+label.inline {
+    display: inline-block;
+    font-weight: 400;
+    margin-right: 1.25rem;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    display: block;
+    width: 100%;
+    margin-top: .3rem;
+    padding: .55rem .7rem;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    font: inherit;
+    background: #fff;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid var(--primario);
+    border-color: transparent;
+}
+
+fieldset {
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    margin: 0 0 1rem;
+}
+
+.campos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: .5rem 1rem;
+}
+
+/*8. Botones */
+
+button {
+    background: var(--primario);
+    color: #fff;
+    border: 0;
+    border-radius: 8px;
+    padding: .6rem 1.2rem;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--primario-osc);
+}
+
+button.peligro {
+    background: var(--peligro);
+}
+
+
+/*9. Mensajes y etiquetas */
+
+.error {
+    background: #ffe3e3;
+    color: #a61e1e;
+    border: 1px solid #ffc9c9;
+    padding: .7rem 1rem;
+    border-radius: 8px;
+}
+
+.etiqueta {
+    display: inline-block;
+    min-width: 110px;
+    color: #5b6479;
+    font-size: .85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.grande {
+    display: block;
+    font-size: 2rem;
+    word-break: break-all;
+}
+
+/*10. Series y tablas */
+
+.serie {
+    font-family: "Cinzel", serif;
+    word-break: break-word;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: .75rem;
+}
+
+th,
+td {
+    border: 1px solid var(--borde);
+    padding: .35rem .9rem;
+    text-align: center;
+}
+
+/* 11. Historial*/
+
+.encabezado-historial {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.encabezado-historial h2 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.historial {
+    list-style: none;
+    padding: 0;
+    margin: .75rem 0 0;
+    font-family: ui-monospace, Consolas, monospace;
+}
+
+.historial li {
+    padding: .4rem 0;
+    border-bottom: 1px dashed var(--borde);
+}
+
+/*12. Pie de página*/
+
+.pie {
+    text-align: center;
+    color: #7a8399;
+    font-size: .85rem;
+    padding: 2rem 0;
+}
+
+/*13. Árbol binario*/
+
+.arbol {
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.arbol ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 20px 0 0;
+    position: relative;
+}
+
+.arbol > ul {
+    padding-top: 0;
+}
+
+.arbol li {
+    position: relative;
+    text-align: center;
+    padding: 20px 6px 0;
+}
+
+.arbol li::before,
+.arbol li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    width: 50%;
+    height: 20px;
+    border-top: 2px solid var(--linea);
+}
+
+.arbol li::after {
+    right: auto;
+    left: 50%;
+    border-left: 2px solid var(--linea);
+}
+
+.arbol li:only-child::before,
+.arbol li:only-child::after {
+    display: none;
+}
+
+.arbol li:only-child {
+    padding-top: 0;
+}
+
+.arbol > ul > li {
+    padding-top: 0;
+}
+
+.arbol > ul > li::before,
+.arbol > ul > li::after {
+    display: none;
+}
+
+.arbol li:first-child::before,
+.arbol li:last-child::after {
+    border: 0;
+}
+
+.arbol li:last-child::before {
+    border-right: 2px solid var(--linea);
+    border-radius: 0 6px 0 0;
+}
+
+.arbol li:first-child::after {
+    border-radius: 6px 0 0 0;
+}
+
+.arbol ul ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 20px;
+    border-left: 2px solid var(--linea);
+}
+
+.arbol li > span {
+    display: inline-block;
+    min-width: 42px;
+    padding: .45rem .7rem;
+    background: var(--primario);
+    color: #fff;
+    font-weight: 700;
+    border-radius: 999px;
+}
+
+.arbol li.vacio > span {
+    visibility: hidden;
+}

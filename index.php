@@ -1,7 +1,9 @@
 
 <?php
-$titulo = 'Taller PHP';
 
+require_once __DIR__ . '/clases/helpers.php';
+
+$titulo = 'Taller PHP';
 require __DIR__ . '/includes/header.php';
 
 $apps = [

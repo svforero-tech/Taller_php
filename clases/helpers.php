@@ -11,6 +11,22 @@ function e(?string $texto): string
     );
 }
 
+//Acomoda el conjunto con las comas y {}
+function mostrarConjunto(array $numeros): string
+{
+    if (empty($numeros)) {
+        return '∅';
+    }
+
+    return '{' . implode(', ', $numeros) . '}';
+}
+
+//Muestra los números con un máximo de dos decimales
+function formatear(float $numero): string
+{
+    return rtrim(rtrim(number_format($numero, 2, '.', ''), '0'), '.');
+}
+
 // Mostrar un nodo del árbol en HTML
 function renderNodo(?Nodo $n): string
 {

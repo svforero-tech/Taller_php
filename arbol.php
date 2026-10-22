@@ -1,7 +1,11 @@
 
 <?php
-$titulo = 'Árbol binario desde sus recorridos';
 
+require_once __DIR__ . '/clases/Nodo.php';
+require_once __DIR__ . '/clases/ArbolBinario.php';
+require_once __DIR__ . '/clases/helpers.php';
+
+$titulo = 'Árbol binario desde sus recorridos';
 
 require __DIR__ . '/includes/header.php';
 

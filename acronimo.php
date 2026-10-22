@@ -53,9 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php endif; ?>
 
 <p class="nota">
-    Ejemplos: As Soon As Possible → ASAP ·
-    Liquid-crystal display → LCD ·
-    Thank George It's Friday! → TGIF
+    Ejemplo: As Soon As Possible → ASAP
 </p>
 
 <?php require __DIR__ . '/includes/footer.php'; ?>

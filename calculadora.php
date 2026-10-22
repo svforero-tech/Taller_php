@@ -137,9 +137,4 @@ $historial = Historial::obtener();
     <?php endif; ?>
 </section>
 
-<p class="nota">
-    Porcentaje: A % de B calcula el porcentaje de un número.
-    Por ejemplo, 20 % de 150 = 30.
-</p>
-
 <?php require __DIR__ . '/includes/footer.php'; ?>
