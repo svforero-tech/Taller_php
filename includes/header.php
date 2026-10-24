@@ -2,13 +2,13 @@
 
 $paginas = [
     'index.php'        => 'Inicio',
-    'acronimo.php'     => '1. Acrónimo',
-    'sucesion.php'     => '2. Fibonacci / Factorial',
-    'estadistica.php'  => '3. Estadística',
-    'conjuntos.php'    => '4. Conjuntos',
-    'binario.php'      => '5. Binario',
-    'arbol.php'        => '6. Árbol binario',
-    'calculadora.php'  => '7. Calculadora',
+    'acronimo.php'     => 'Acrónimo',
+    'sucesion.php'     => 'Fibonacci / Factorial',
+    'estadistica.php'  => 'Estadística',
+    'conjuntos.php'    => 'Conjuntos',
+    'binario.php'      => 'Binario',
+    'arbol.php'        => 'Árbol binario',
+    'calculadora.php'  => 'Calculadora',
 ];
 $actual = basename($_SERVER['SCRIPT_NAME']);
 ?>
@@ -28,7 +28,6 @@ $actual = basename($_SERVER['SCRIPT_NAME']);
 
 <body>
     <header class="barra">
-        <a class="marca" href="index.php">Taller PHP</a>
         <nav>
             <?php foreach ($paginas as $archivo => $nombre): ?>
                 <a href="<?= e($archivo) ?>" class="<?= $archivo === $actual ? 'activo' : '' ?>"><?= e($nombre) ?></a>

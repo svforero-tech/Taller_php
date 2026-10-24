@@ -112,10 +112,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Ejemplo: A → B → D.
     </p>
 
+     <!-- Recorre los campos disponibles para crear una entrada por cada recorrido. -->
     <?php foreach ($campos as $clave => $nombre): ?>
 
         <label>
-            <?= e($nombre) ?>
+            <?= e($nombre) ?> <!-- Muestra el nombre del recorrido, por ejemplo, Preorden. -->
 
             <input
                 type="text"
@@ -128,7 +129,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'post' => 'D → E → B → C → A'
                     ];
 
-                    echo e($ejemplos[$clave]);
+                    // Envía los recorridos para intentar construir el árbol.
+                    echo e($ejemplos[$clave]); 
                 ?>"
             >
         </label>
@@ -152,25 +154,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="resultado">
 
         <span class="etiqueta">
-            Construido con: <?= e($nombreMetodo) ?>
+            Construido con: <?= e($nombreMetodo) ?>  <!-- Indica qué método se utilizó para construir el árbol. -->
         </span>
 
+        <!-- Dibuja la estructura visual del árbol binario. -->
         <div class="arbol">
             <ul>
                 <?= renderNodo($arbol->raiz) ?>
             </ul>
         </div>
 
+        <!-- Muestra el recorrido en preorden, de izquierda a derecha. -->
         <p>
             <span class="etiqueta">Preorden:</span>
             <?= e(implode(' → ', $arbol->preorden())) ?>
         </p>
 
+         <!-- Muestra el recorrido en inorden. -->
         <p>
             <span class="etiqueta">Inorden:</span>
             <?= e(implode(' → ', $arbol->inorden())) ?>
         </p>
 
+        <!-- Muestra el recorrido en postorden. -->
         <p>
             <span class="etiqueta">Postorden:</span>
             <?= e(implode(' → ', $arbol->postorden())) ?>

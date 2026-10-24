@@ -16,8 +16,9 @@ class Calculadora
             return $a * $b;
         }
 
-        if ($operacion === 'division') {
-            if ($b == 0) {
+        if ($operacion === 'division') { 
+            // Antes de dividir revisa que el segundo número no sea 0
+            if ($b == 0) { 
                 throw new Exception('No se puede dividir entre cero.');
             }
 

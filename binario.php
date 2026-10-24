@@ -8,15 +8,21 @@ $numero = '';
 $resultado = null;
 $error = '';
 
+// Comprueba si el formulario fue enviado mediante POST.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $numero = $_POST['numero'] ?? '';
+    $numero = $_POST['numero'] ?? ''; // Obtiene el número ingresado por el usuario.
 
+    // Elimina los espacios de los extremos y comprueba
+    // que el valor ingresado sea un número entero válido.
     $n = filter_var(trim($numero), FILTER_VALIDATE_INT);
+     
 
     if ($n === false) {
         $error = 'Ingresa un número entero válido.';
     } else {
         $resultado = ConversorBinario::convertir($n);
+        // Llama al método convertir() para obtener el número
+        // en binario y los pasos realizados durante el proceso.
     }
 }
 
@@ -32,10 +38,12 @@ require __DIR__ . '/includes/header.php';
     <button type="submit">Convertir</button>
 </form>
 
-<?php if ($error !== ''): ?>
+<!-- Muestra el mensaje de error si la validación falla. -->
+<?php if ($error !== ''): ?> 
     <p class="error"><?= e($error) ?></p>
 <?php endif; ?>
 
+<!-- Muestra el resultado si la conversión se realizó. -->
 <?php if ($resultado !== null): ?>
     <div class="resultado">
         <p>Resultado en binario:</p>
@@ -50,6 +58,7 @@ require __DIR__ . '/includes/header.php';
                 <th>Residuo</th>
             </tr>
 
+             <!-- Recorre cada paso almacenado durante la conversión. -->
             <?php foreach ($resultado['pasos'] as $paso): ?>
                 <tr>
                     <td><?= $paso[0] ?></td>

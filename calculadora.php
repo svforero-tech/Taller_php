@@ -12,9 +12,10 @@ $a = '';
 $b = '';
 $operacion = 'suma';
 
-// Borrar el historial
+// Comprueba si el formulario fue enviado mediante POST.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // Borrar el historial
     if (($_POST['accion'] ?? '') === 'borrar') {
         Historial::borrar();
         header('Location: calculadora.php');
@@ -57,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             header('Location: calculadora.php');
             exit;
-
         } catch (Exception $e) {
             $error = $e->getMessage();
         }
@@ -78,8 +78,7 @@ $historial = Historial::obtener();
                 name="a"
                 inputmode="decimal"
                 value="<?= e($a) ?>"
-                required
-            >
+                required>
         </label>
 
         <label>Operación
@@ -98,8 +97,7 @@ $historial = Historial::obtener();
                 name="b"
                 inputmode="decimal"
                 value="<?= e($b) ?>"
-                required
-            >
+                required>
         </label>
 
     </div>

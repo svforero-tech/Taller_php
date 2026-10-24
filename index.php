@@ -1,4 +1,3 @@
-
 <?php
 
 require_once __DIR__ . '/clases/helpers.php';
@@ -7,38 +6,75 @@ $titulo = 'Taller PHP';
 require __DIR__ . '/includes/header.php';
 
 $apps = [
-    ['acronimo.php', '1. Acrónimo',
-        'Convierte una frase en un acrónimo. Ejemplo: Portable Network Graphics → PNG.'],
+    [
+        'acronimo.php',
+        'Acrónimo',
+        'Convierte una frase en un acrónimo. Ejemplo: Portable Network Graphics → PNG.',
+        'Aa'
+    ],
 
-    ['sucesion.php', '2. Fibonacci y factorial',
-        'Genera la serie de Fibonacci o calcula el factorial de un número.'],
+    [
+        'sucesion.php',
+        'Fibonacci y factorial',
+        'Genera la serie de Fibonacci o calcula el factorial de un número.',
+        'n!'
+    ],
 
-    ['estadistica.php', '3. Estadística',
-        'Calcula el promedio, la media y la moda de una lista de números.'],
+    [
+        'estadistica.php',
+        'Estadística',
+        'Calcula el promedio, la media y la moda de una lista de números.',
+        'x̄'
+    ],
 
-    ['conjuntos.php', '4. Conjuntos',
-        'Realiza la unión, intersección y diferencia entre dos conjuntos.'],
+    [
+        'conjuntos.php',
+        'Conjuntos',
+        'Realiza la unión, intersección y diferencia entre dos conjuntos.',
+        '∪'
+    ],
 
-    ['binario.php', '5. Conversión a binario',
-        'Convierte un número entero al sistema binario.'],
+    [
+        'binario.php',
+        'Conversión a binario',
+        'Convierte un número entero al sistema binario.',
+        '01'
+    ],
 
-    ['arbol.php', '6. Árbol binario',
-        'Construye un árbol binario a partir de sus recorridos.'],
+    [
+        'arbol.php',
+        'Árbol binario',
+        'Construye un árbol binario a partir de sus recorridos.',
+        '⑂'
+    ],
 
-    ['calculadora.php', '7. Calculadora',
-        'Realiza operaciones matemáticas y guarda un historial.']
+    [
+        'calculadora.php',
+        'Calculadora',
+        'Realiza operaciones matemáticas y guarda un historial.',
+        '±'
+    ]
 ];
 ?>
 
-<p class="subtitulo">Selecciona una aplicación para comenzar:</p>
+<div class="escena">
+    <section class="pantalla">
+        <h2 class="bienvenida">¡Bienvenido!</h2>
+        <p class="subtitulo">Pasa el mouse sobre un círculo para ver la aplicación.<br>Hay siete caminos, ¿cuál tomas?</p>
+    </section>
 
-<div class="rejilla">
-    <?php foreach ($apps as $app): ?>
-        <a class="tarjeta" href="<?= e($app[0]) ?>">
-            <h2><?= e($app[1]) ?></h2>
-            <p><?= e($app[2]) ?></p>
-        </a>
-    <?php endforeach; ?>
+    <nav class="apps">
+        <?php foreach ($apps as $i => $app): ?>
+            <div class="app">
+                <a class="circulo" href="<?= e($app[0]) ?>" aria-label="<?= e($app[1]) ?>">
+                    <?= e($app[3]) ?>
+                </a>
+                <div class="info">
+                    <h3><?= e($app[1]) ?></h3>
+                    <p><?= e($app[2]) ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </nav>
 </div>
-
 <?php require __DIR__ . '/includes/footer.php'; ?>

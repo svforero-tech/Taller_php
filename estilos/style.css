@@ -1,283 +1,262 @@
-
-/*1. Variables de colores*/
-
+/*1. Variables */
 :root {
-    --fondo: #E8D1A7;
-    --texto: #706e66;
-    --tarjeta: #ffffffb0;
-    --borde: #dfe3ec;
-    --primario: #CCD67F;
-    --primario-osc: #8d9168;
-    --peligro: #759d80;
-    --linea: #8a94a8;
+    --primario: #8ed2ba;
+    --primario-oscuro: #bed2ba;
+    --linea: #aac4bc;
+    --fondo: #faf8f3;
+    --tarjeta: #f6fdfb;
+    --texto: #525871;
+    --texto-suave: #64748b;
+    --borde: #aac4bc;
+    --radio: 16px;
+    --sombra: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-/*2. Configuración general */
-
-* {
+/* 2. Base*/
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: "Cinzel", serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", Arial, sans-serif;
     background: var(--fondo);
     color: var(--texto);
     line-height: 1.5;
 }
 
-h1 {
-    margin-top: 0;
+h1,
+h2,
+h3 {
+    font-family: "Cinzel", serif;
+    margin: 0 0 .5rem;
 }
 
-/*3. Barra de navegación */
+a {
+    color: var(--primario);
+}
 
+/* ===== 3. Encabezado y navegación ===== */
 .barra {
-    background: #8A5F41;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-    padding: .75rem 1.5rem;
+    flex-direction: column;     
+    align-items: center;        
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 32px;
+    background: var(--tarjeta);
+    border-bottom: 2px solid var(--borde);
+    text-align: center;
 }
 
-.barra .marca {
-    color: #fff;
+.marca {
+    font-family: "Cinzel", serif;
+    font-size: 1.5rem;
     font-weight: 700;
+    color: var(--texto);
     text-decoration: none;
-    font-size: 1.1rem;
 }
 
 .barra nav {
     display: flex;
-    flex-wrap: wrap;
-    gap: .25rem;
+    flex-wrap: wrap;           
+    justify-content: center;
+    gap: 4px;
+    max-width: 100%;
 }
 
 .barra nav a {
-    color: #fdfdfd;
+    position: relative;
+    padding: .5rem 1rem;
+    border-radius: 999px;
+    color: var(--texto);
     text-decoration: none;
-    padding: .35rem .7rem;
-    border-radius: 6px;
     font-size: .9rem;
-    font-weight: bold;
+    transition: transform .25s ease,
+                background .25s ease,
+                color .25s ease,
+                box-shadow .25s ease;
+}
+
+/* Línea que crece desde el centro */
+.barra nav a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    width: 0;
+    height: 2px;
+    background: var(--primario);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width .3s ease;
 }
 
 .barra nav a:hover,
+.barra nav a:focus-visible {
+    transform: translateY(-4px);
+    background: var(--fondo);
+    color: var(--primario);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.barra nav a:hover::after,
+.barra nav a:focus-visible::after {
+    width: 60%;
+}
+
+/* Página actual */
 .barra nav a.activo {
-    background: #A77F60;
-    color: #ebdfdf;
+    background: var(--primario);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
 }
 
-
-/*4. Contenedor y textos */
-
-.contenedor {
-    max-width: 960px;
-    margin: 2rem auto;
-    padding: 0 1.25rem;
+.barra nav a.activo::after {
+    display: none;
 }
 
-.subtitulo,
-.nota {
-    color: #5b6479;
-    font-size: .92rem;
+.barra nav a.activo:hover {
+    background: var(--primario-oscuro);
+    color: #fff;
 }
 
-
-/*  5. Cuadrícula y tarjetas*/
-
-.rejilla {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem;
+/* Al hacer clic se "hunde" */
+.barra nav a:active {
+    transform: translateY(-1px) scale(.96);
 }
 
-.tarjeta {
+/* 4. Contenido principal */
+main.contenedor {
+    flex: 1;
+    width: min(900px, 92%);
+    margin: 30px auto;
+}
+
+main.contenedor > h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+footer {
+    padding: 16px;
+    text-align: center;
+    font-size: .85rem;
+    color: var(--texto-suave);
+    border-top: 1px solid var(--linea);
+}
+
+/*5. Index: pantalla + círculos */
+.escena {
+    --alto-pantalla: 260px;
+    position: relative;
+    max-width: 720px;
+    margin: 30px auto;
+}
+
+.pantalla {
+    height: var(--alto-pantalla);
+    padding: 24px;
     background: var(--tarjeta);
-    border: 1px solid var(--borde);
-    border-radius: 12px;
-    padding: 1.1rem 1.25rem;
+    border: 2px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+.bienvenida {
+    font-size: 1.8rem;
+    transition: opacity .25s ease;
+}
+
+.subtitulo {
+    color: var(--texto-suave);
+    transition: opacity .25s ease;
+}
+
+.apps {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.circulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border: 2px solid var(--borde);
+    border-radius: 50%;
+    background: var(--tarjeta);
+    color: var(--texto);
+    font-size: 1.3rem;
+    font-weight: 600;
     text-decoration: none;
-    color: inherit;
-    transition: transform .15s, box-shadow .15s;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
 }
 
-.tarjeta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(30, 40, 80, .12);
+.app:hover .circulo,
+.app:focus-within .circulo {
+    background: var(--primario);
+    border-color: var(--primario);
+    color: #fff;
+    animation: flotar 1.4s ease-in-out infinite;
 }
 
-.tarjeta h2 {
-    margin: 0 0 .35rem;
-    font-size: 1.05rem;
+@keyframes flotar {
+    0%, 100% {
+        transform: translateY(0) scale(1.08);
+    }
+    50% {
+        transform: translateY(-12px) scale(1.08);
+    }
+}
+
+.info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--alto-pantalla);
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity .25s ease, transform .25s ease, visibility .25s;
+    pointer-events: none;
+}
+
+.info h3 {
+    font-size: 1.6rem;
     color: var(--primario);
 }
 
-.tarjeta p {
+.info p {
     margin: 0;
-    color: #97a1a6;
-    font-size: .92rem;
+    font-size: 1.05rem;
 }
 
-/* 6. Paneles y resultados */
-
-.panel,
-.resultado {
-    background: var(--tarjeta);
-    border: 1px solid var(--borde);
-    border-radius: 12px;
-    padding: 1.25rem;
-    margin-bottom: 1.25rem;
+.app:hover .info,
+.app:focus-within .info {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
-
-/* 7. Formularios y campos*/
-
-label {
-    display: block;
-    font-weight: 600;
-    font-size: .92rem;
-    margin-bottom: .9rem;
+.escena:has(.app:hover) .bienvenida,
+.escena:has(.app:hover) .subtitulo,
+.escena:has(.app:focus-within) .bienvenida,
+.escena:has(.app:focus-within) .subtitulo {
+    opacity: 0;
 }
 
-label.inline {
-    display: inline-block;
-    font-weight: 400;
-    margin-right: 1.25rem;
-}
-
-input[type="text"],
-input[type="number"],
-select {
-    display: block;
-    width: 100%;
-    margin-top: .3rem;
-    padding: .55rem .7rem;
-    border: 1px solid var(--borde);
-    border-radius: 8px;
-    font: inherit;
-    background: #fff;
-}
-
-input:focus,
-select:focus {
-    outline: 2px solid var(--primario);
-    border-color: transparent;
-}
-
-fieldset {
-    border: 1px solid var(--borde);
-    border-radius: 8px;
-    margin: 0 0 1rem;
-}
-
-.campos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: .5rem 1rem;
-}
-
-/*8. Botones */
-
-button {
-    background: var(--primario);
-    color: #fff;
-    border: 0;
-    border-radius: 8px;
-    padding: .6rem 1.2rem;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-button:hover {
-    background: var(--primario-osc);
-}
-
-button.peligro {
-    background: var(--peligro);
-}
-
-
-/*9. Mensajes y etiquetas */
-
-.error {
-    background: #ffe3e3;
-    color: #a61e1e;
-    border: 1px solid #ffc9c9;
-    padding: .7rem 1rem;
-    border-radius: 8px;
-}
-
-.etiqueta {
-    display: inline-block;
-    min-width: 110px;
-    color: #5b6479;
-    font-size: .85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .03em;
-}
-
-.grande {
-    display: block;
-    font-size: 2rem;
-    word-break: break-all;
-}
-
-/*10. Series y tablas */
-
-.serie {
-    font-family: "Cinzel", serif;
-    word-break: break-word;
-}
-
-table {
-    border-collapse: collapse;
-    margin-top: .75rem;
-}
-
-th,
-td {
-    border: 1px solid var(--borde);
-    padding: .35rem .9rem;
-    text-align: center;
-}
-
-/* 11. Historial*/
-
-.encabezado-historial {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.encabezado-historial h2 {
-    margin: 0;
-    font-size: 1.1rem;
-}
-
-.historial {
-    list-style: none;
-    padding: 0;
-    margin: .75rem 0 0;
-    font-family: ui-monospace, Consolas, monospace;
-}
-
-.historial li {
-    padding: .4rem 0;
-    border-bottom: 1px dashed var(--borde);
-}
-
-/*12. Pie de página*/
-
-.pie {
-    text-align: center;
-    color: #7a8399;
-    font-size: .85rem;
-    padding: 2rem 0;
-}
+/*6 a 12: estilos de cada aplicación (formularios, resultados, tablas...)*/
 
 /*13. Árbol binario*/
 
@@ -375,4 +354,173 @@ td {
 
 .arbol li.vacio > span {
     visibility: hidden;
+}
+
+/* ===== Apps: burbujas ===== */
+
+/* Formulario: caja redondeada */
+main.contenedor form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    max-width: 720px;
+    margin: 24px auto;
+    padding: 24px;
+    background: var(--tarjeta);
+    border: 2px solid var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+}
+
+/* Calculadora: etiqueta + campo alineados en cuadrícula */
+main.contenedor form:has(select) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 16px 14px;
+    max-width: 560px;
+}
+
+main.contenedor form:has(select) label {
+    text-align: right;
+}
+
+main.contenedor form:has(select) input,
+main.contenedor form:has(select) select {
+    width: 100%;
+}
+
+main.contenedor form:has(select) button,
+main.contenedor form:has(select) input[type="submit"] {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: auto;
+}
+
+main.contenedor label {
+    font-weight: 600;
+}
+
+/* Cajas de texto en forma de burbuja */
+main.contenedor input[type="text"],
+main.contenedor input[type="number"],
+main.contenedor input:not([type]),
+main.contenedor select,
+main.contenedor textarea {
+    flex: 1 1 220px;
+    min-width: 0;
+    padding: .75rem 1.2rem;
+    font: inherit;
+    color: var(--texto);
+    background: var(--fondo);
+    border: 2px solid var(--linea);
+    border-radius: 999px;
+    outline: none;
+    transition: border-color .25s ease,
+                box-shadow .25s ease,
+                transform .25s ease,
+                background .25s ease;
+}
+
+main.contenedor textarea {
+    border-radius: 24px;
+    resize: vertical;
+}
+
+main.contenedor input::placeholder,
+main.contenedor textarea::placeholder {
+    color: var(--texto-suave);
+}
+
+main.contenedor input:hover,
+main.contenedor select:hover,
+main.contenedor textarea:hover {
+    border-color: var(--primario);
+}
+
+main.contenedor input:focus,
+main.contenedor select:focus,
+main.contenedor textarea:focus {
+    background: #fff;
+    border-color: var(--primario);
+    box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.18);
+    transform: translateY(-2px);
+}
+
+/* Botón en forma de burbuja */
+main.contenedor button,
+main.contenedor input[type="submit"] {
+    padding: .75rem 1.8rem;
+    font: inherit;
+    font-weight: 700;
+    color: #fff;
+    background: var(--primario);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+    transition: transform .25s cubic-bezier(.34, 1.56, .64, 1),
+                background .25s ease,
+                box-shadow .25s ease;
+}
+
+main.contenedor button:hover,
+main.contenedor input[type="submit"]:hover {
+    background: var(--primario-oscuro);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
+}
+
+main.contenedor button:active,
+main.contenedor input[type="submit"]:active {
+    transform: scale(.95);
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+}
+
+/* Resultado en burbuja */
+.resultado {
+    max-width: 720px;
+    margin: 24px auto;
+    padding: 1.2rem 1.8rem;
+    background: var(--tarjeta);
+    border: 2px solid var(--primario);
+    border-radius: 28px;
+    box-shadow: var(--sombra);
+    text-align: center;
+    animation: burbuja .5s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+
+.resultado h2,
+.resultado h3 {
+    color: var(--primario);
+}
+
+.resultado p {
+    margin: .3rem 0;
+}
+
+@keyframes burbuja {
+    from {
+        opacity: 0;
+        transform: scale(.6) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Mensajes de error (si los tienes) */
+.error {
+    max-width: 720px;
+    margin: 24px auto;
+    padding: 1rem 1.6rem;
+    background: #fef2f2;
+    border: 2px solid #ef4444;
+    border-radius: 28px;
+    color: #b91c1c;
+    text-align: center;
+    animation: burbuja .5s ease both;
 }
